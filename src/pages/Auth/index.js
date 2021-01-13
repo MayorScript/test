@@ -51,7 +51,7 @@ export default function Auth() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch(`${process.env.REACT_APP_API_URL}/user/login`, {
+    fetch("https://api-test.mymoneystory.co.uk/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
