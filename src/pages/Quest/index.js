@@ -14,7 +14,7 @@ function Quest(props) {
 
   useEffect(() => {
     if (refetch) {
-      fetch(`${process.env.REACT_APP_API_URL}/admin/quests/${id}`, {
+      fetch(`${process.env.REACT_APP_API_URL}admin/quests/${id}`, {
         method: "GET",
         credentials: "include",
         headers: {

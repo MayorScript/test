@@ -2,9 +2,9 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import QuestsTable from "./pages/QuestsTable";
 import Quest from "./pages/Quest";
-import Users from "./pages/Users";
+import Users from "./views/Users";
 import Matrix from "./pages/Matrix";
-
+import QuestCard from "./components/Cards/Quest";
 export const PrivateRoute = ({ children, ...rest }) => {
   const loggedIn = !!localStorage.getItem("MS_loggedIn");
   return (
@@ -43,6 +43,12 @@ export const routes = [
     exact: true,
     title: () => "Quests",
     main: () => <QuestsTable />,
+  },
+  {
+    path: "/quest",
+    exact: true,
+    title: () => "Quests",
+    main: () => <QuestCard />,
   },
   {
     path: "/quests/:id",

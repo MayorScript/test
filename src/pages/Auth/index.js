@@ -51,10 +51,12 @@ export default function Auth() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch("https://api-test.mymoneystory.co.uk/user/login", {
+    fetch(`${REACT_APP_API_URL}/login`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
       },
       credentials: "include",
       body: JSON.stringify(formData)
