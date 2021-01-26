@@ -25,7 +25,7 @@ export default function SidebarList() {
   return (
     <>
       <List>
-        <ListItemLink to="/" primary="Dashboard" icon={<DashboardIcon />} />
+        <ListItemLink to="/dashboard" primary="Dashboard" icon={<DashboardIcon />} />
         <ListItemLink to="/users" primary="Users" icon={<PeopleIcon />} />
         <ListItemLink to="/matrix" primary="Matrix" icon={<TableChartIcon />} />
         <ListItemLink

@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PrivateRoute } from "./routes";
-import { StateProvider } from "./utils/state";
+//import { StateProvider } from "./utils/state";
+import {Provider} from 'react-redux'
+import store from './redux/store';
 import { SnackbarProvider } from "notistack";
 
 import Main from "./pages/Main";
-import Auth from "./pages/Auth";
+import Auth from "./views/Auth";
 
 function App() {
-  const [initialState] = useState({});
+  //const [initialState] = useState({});
 
-  const reducer = (state, action) => {
-    console.log("Reducer action", action);
-    switch (action.type) {
-      default:
-        return state;
-    }
-  };
+  // const reducer = (state, action) => {
+  //   console.log("Reducer action", action);
+  //   switch (action.type) {
+  //     default:
+  //       return state;
+  //   }
+  // };
   return (
-    <StateProvider initialState={initialState} reducer={reducer}>
+    <Provider store={store}>
       <SnackbarProvider maxSnack={3}>
         <Router>
           <Switch>
@@ -31,7 +33,7 @@ function App() {
           </Switch>
         </Router>
       </SnackbarProvider>
-    </StateProvider>
+    </Provider>
   );
 }
 

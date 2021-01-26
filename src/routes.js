@@ -28,7 +28,7 @@ export const PrivateRoute = ({ children, ...rest }) => {
 
 export const routes = [
   {
-    path: "/",
+    path: "/dashboard",
     exact: true,
     title: () => "Dashboard",
     main: () => <div>Here will be some general info. Maybe some charts.</div>,
