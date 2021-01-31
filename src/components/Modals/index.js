@@ -24,56 +24,38 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function AddQuestModal(props) {
+function Modal(props) {
   const classes = useStyles();
   const history = useHistory();
   const { open, toggleModal } = props;
-  const [questInfo, setQuestInfo] = useState({
-    title: "",
-    type: "quiz",
-    price: 100,
-    reward: 25,
-    finishes_count: "1"
-  });
+//   const [questInfo, setQuestInfo] = useState({
+//     title: "",
+//     type: "quiz",
+//     price: 100,
+//     reward: 25,
+//     finishes_count: "1"
+//   });
 
   const handleClose = () => {
-    setQuestInfo({
-      title: "",
-      type: "quiz",
-      price: 100,
-      reward: 25,
-      finishes_count: "1"
-    });
+    // setQuestInfo({
+    //   title: "",
+    //   type: "quiz",
+    //   price: 100,
+    //   reward: 25,
+    //   finishes_count: "1"
+    // });
     toggleModal();
   };
 
   const handleChange = event => {
     setQuestInfo({
-      ...questInfo,
+    //   ...questInfo,
       [event.target.name]: event.target.value
     });
   };
 
   const handleSubmit = () => {
-    fetch(`${process.env.REACT_APP_API_URL}/admin/quests`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include",
-      body: JSON.stringify(questInfo)
-    })
-      .then(res => {
-        if (res.status === 401) {
-          alert("Your session expired or you don't have admin rights");
-          localStorage.removeItem("MS_loggedIn");
-          history.push("/");
-        }
-        return res.json();
-      })
-      .then(res => { 
-        history.push(`/quests/${res.id}`);
-      });
+ 
   };
 
   return (
@@ -94,14 +76,14 @@ function AddQuestModal(props) {
             name="title"
             label="Title"
             type="text"
-            value={questInfo.title}
+            // value={questInfo.title}
             onChange={handleChange}
             className={classes.input}
           />
           <div className={classes.input}>
             <InputLabel htmlFor="type">Type</InputLabel>
             <Select
-              value={questInfo.type}
+            //   value={questInfo.type}
               onChange={handleChange}
               inputProps={{
                 name: "type",
@@ -116,7 +98,7 @@ function AddQuestModal(props) {
           <div className={classes.input}>
             <InputLabel htmlFor="reward">Reward</InputLabel>
             <Select
-              value={questInfo.reward}
+            //   value={questInfo.reward}
               onChange={handleChange}
               inputProps={{
                 name: "reward",
@@ -135,9 +117,9 @@ function AddQuestModal(props) {
             name="finishes_count"
             label="Finishes Count"
             type="number"
-            value={
-              questInfo.type === "reflection" ? "0" : questInfo.finishes_count
-            }
+            // value={
+            //   questInfo.type === "reflection" ? "0" : questInfo.finishes_count
+            // }
             onChange={handleChange}
             disabled={questInfo.type === "reflection"}
           />
@@ -155,4 +137,4 @@ function AddQuestModal(props) {
   );
 }
 
-export default AddQuestModal;
+export default Modal;

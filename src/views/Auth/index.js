@@ -41,10 +41,11 @@ export const Auth = ({login, isAuthenticated}) => {
   const classes = useStyles();
   const loggedIn = !!localStorage.getItem("MS_loggedIn");
 
+  const {email, password} = formData;
 
   let location = useLocation();
 
-  const {email, password} = formData;
+  let { from } = location.state || { from: { pathname: "/" } };
 
   const handleChange = e => 
   setFormData({
@@ -57,9 +58,9 @@ export const Auth = ({login, isAuthenticated}) => {
       login(email,password);
   }
  
-  if(isAuthenticated){
-    return <Redirect to="/dashboard" />
-  }
+  // if(isAuthenticated){
+  //   return <Redirect to="/dashboard" />
+  // }
 
 
   return loggedIn ? (
@@ -68,8 +69,8 @@ export const Auth = ({login, isAuthenticated}) => {
         pathname: "/dashboard",
         state: { from: location }
       }}
-    />
-  ) : (
+    /> 
+  ) :(
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>

@@ -1,0 +1,242 @@
+.has-search {
+    float: right;
+    margin-bottom: 0 !important;
+}
+
+.form-control {
+    border: 1px solid #c4c4c4 !important;
+    border-radius: 0 !important;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+table {
+    background-color: #ffffff !important;
+    border: 1px solid #c4c4c4;
+}
+
+.table > thead {
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.table > tbody {
+    font-weight: 400 !important;
+}
+
+
+.MuiTableCell-alignRight {
+    text-align: left !important;
+    flex-direction: inherit !important;
+}
+
+
+/* .btn-primary {
+    float: right;
+    padding: 15px 17px !important;
+    border-radius: 30px !important;
+    margin-top: -120px;
+    margin-right: 7px;
+} */
+
+.fab {
+    font-size: 25px !important;
+}
+
+.MuiFab-root {
+    float: right;
+    margin-top: -90px !important;
+    margin-right: 10px !important;
+}
+
+.modal-blur{
+    width:100%;
+    height:100%;
+    position: fixed;
+    top:0;
+    left:0;
+    background-color: rgba(0,0,0,0.34);
+    z-index:1111111111;
+}
+
+.modal-inner{
+    padding:1em;
+    min-width:10em;
+    max-width:40em;
+    min-height:10em;
+    border-radius: 0.5em;
+    margin: 8em auto;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+
+.actionIcon{
+    font-size:3em;
+    width:4em;
+    margin: 0 0.2em;
+}
+
+.form-control {
+    width: 100%;
+}
+
+form {
+    margin: 2em 2.5em;
+}
+
+.form-row {
+    margin-left: 0 !important;
+}
+
+.formstyle {
+    height: 50px;
+    border-radius: .25rem !important;
+    border: 1px solid #ced4da !important;
+}
+
+.col-md-6 {
+    max-height: 50px;
+}
+
+.reward {
+    text-indent: 12px;
+}
+
+.form-select-lg  {
+    font-size: 16px !important;
+    height: 50px;
+}
+
+.buttonform {
+    float: right;
+}
+
+.btn {
+    text-transform: none !important;
+    font-weight: 500;
+    border-radius: 3px !important;
+    white-space: none !important;
+    word-wrap: none !important;
+}
+
+.MuiAutocomplete-root {
+    width: 100% !important;
+    padding-bottom: 20px;
+}
+
+.icon-mod {
+    padding: 20px 0;
+}
+
+.icon-mod p {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.MuiSvgIcon-root {
+    cursor: pointer;
+}
+
+.btn-label {
+	position: relative;
+	left: -12px;
+	display: inline-block;
+	padding: 6px 12px;
+	background: rgba(0, 0, 0, 0.15);
+	border-radius: 3px 0 0 3px;
+}
+ 
+.btn-labeled {
+	padding-top: 0;
+    padding-bottom: 0;
+    text-align: center;
+}
+
+.btn-elegant {
+    background: #E8EBF7 !important;
+    border-radius: 3px !important;
+    color: #425ABD !important;
+    font-size: 15px !important;
+
+}
+
+.btn-unique {
+    background: #FFEBEB !important;
+    border-radius: 3px !important;
+    color: #FF0000 !important;
+    margin: 0 10px;
+    font-size: 15px !important;
+
+}
+.delete__user{
+    background: #FFEBEB !important;
+    border-radius: 3px !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 15px !important;
+    line-height: 18px !important;
+    color: #FF0000 !important;
+    margin: 0 10px !important;
+}
+.send__quest{
+    background: #ECEEF8 !important;
+    border-radius: 3px !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 15px !important;
+    line-height: 18px !important;
+    color: #3F51B5 !important;
+    margin: 0 10px !important;
+}
+.option{
+    position: absolute;
+    background-color: #fff;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    margin: 1%;
+    right: 50px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 7px;
+}
+.option__menu{
+    position: absolute;
+    background-color: #fff;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    margin: 1%;
+    right: 50px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 7px;
+}
+.option__menu li:hover{
+    background-color: grey;
+}
+.option__menu ul{
+    list-style-type: none;
+}
+.option__menu li{
+    padding-right: 35px;
+}

@@ -1,3 +1,4 @@
+import  history from '../../utils/history'
 import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
@@ -7,7 +8,7 @@ import {
 } from '../action/constants';
 
 const initialState = {
-    token: localStorage.getItem('MS_loggedIn'),
+    token: localStorage.getItem(("MS_loggedIn") === true),
     loading: true,
     isAuthenticated: false,
     user: null
@@ -15,7 +16,7 @@ const initialState = {
 
 export default function (state = initialState, action){
     const {type, payload} = action;
-
+   
     switch(type){
         case LOAD_USER:
             return{
@@ -25,7 +26,8 @@ export default function (state = initialState, action){
                 user: payload
             }
         case LOGIN_SUCCESS:
-            localStorage.setItem('MS_loggedIn', payload.token)
+            history.replace('/');
+            localStorage.setItem('MS_loggedIn',"TRUE")
             return{
                 ...state,
                 ...payload,

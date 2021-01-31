@@ -4,7 +4,7 @@ import AssignQuestModal from "../../components/AssignQuestModal";
 import { useHistory } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
-export default function Users(props) {
+export default function TestTable(props) {
   const tableRef = useRef();
   const { enqueueSnackbar } = useSnackbar();
   const [refetch, setRefetch] = useState(true);
@@ -17,34 +17,8 @@ export default function Users(props) {
   };
 
   useEffect(() => {
-    if (refetch) {
-      fetch(`${process.env.REACT_APP_API_URL}/admin/users`, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => {
-          if (res.status === 401) {
-            enqueueSnackbar(
-              "Your session expired or you don't have admin rights",
-              { variant: "error" }
-            );
-            localStorage.removeItem("MS_loggedIn");
-            history.push("/");
-          }
-          return res.json();
-        })
-        .then((res) => {
-          setData(res);
-          setRefetch(false);
-        })
-        .catch((err) => {
-          console.error("Error in fetch:", err);
-        });
-    }
-  }, [refetch]);
+ 
+  },[]);
 
   const setSelectedUsers = (rows) => {
     const list = [];
@@ -101,7 +75,7 @@ export default function Users(props) {
       />
       <AssignQuestModal
         open={modalOpened}
-        toggleModal={toggleModal} 
+        toggleModal={toggleModal}
         usersList={usersList}
         dropSelection={dropSelection}
       />

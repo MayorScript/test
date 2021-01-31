@@ -26,8 +26,8 @@ export default function Matrix(props) {
               "Your session expired or you don't have admin rights",
               { variant: "error" }
             );
-            localStorage.removeItem("MS_loggedIn");
-            history.push("/");
+            //localStorage.removeItem("MS_loggedIn");
+            //history.push("/");
           }
           return res.json();
         })

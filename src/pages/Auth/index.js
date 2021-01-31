@@ -40,8 +40,8 @@ export default function Auth() {
   let { from } = location.state || { from: { pathname: "/" } };
 
   const handleChange = e => {
-    e.persist();
-    setFormData(prevState => {
+    e.persist(); 
+    setFormData(prevState => { 
       return {
         ...prevState,
         [e.target.name]: e.target.value
@@ -72,7 +72,7 @@ export default function Auth() {
       .then(res => {
         localStorage.setItem("MS_loggedIn", "TRUE");
         history.replace(from);
-      })
+      }) 
       .catch(err => {
         console.error("Login error:", err);
       });
@@ -86,7 +86,7 @@ export default function Auth() {
         pathname: "/",
         state: { from: location }
       }}
-    />
+    />  
   ) : (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
