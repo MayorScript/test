@@ -54,17 +54,7 @@ export default function UserTable(props) {
   }));
 
   const rows = [
-    createData('John ', 'Doe', 'john@doe.com', 'Male', true, 55, 10, 'Help'
-    // <div>
-    //   <PublishOutlinedIcon 
-    //     className="actionIcon"
-    //     onClick={()=>{
-    //     props.setShowModal(true);
-    //     props.setModalPage("publish");
-    //     props.setModalId("11")
-    //   }}/>   
-    // </div>
-    ),
+    createData('John ', 'Doe', 'john@doe.com', 'Male', true, 55, 10, 'Help',)
 
   ];
   
@@ -341,6 +331,11 @@ export default function UserTable(props) {
                       selected={isItemSelected}
                       onMouseEnter={() => setOptionShow(true)}
                       onMouseLeave={() => setOptionShow(false)}
+                      onClick={()=>{
+                        props.setShowModal(true);
+                        props.setModalPage("user__details");
+                        props.setModalId("1")
+                      }}
                     >
                       <TableCell padding="checkbox">
                         <Checkbox

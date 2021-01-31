@@ -240,3 +240,20 @@ form {
 .option__menu li{
     padding-right: 35px;
 }
+.modal__close{
+    position: absolute;
+    top: 30%;
+    right: 26%;
+    background: #fff;
+    border-radius: 50px;
+    box-shadow: 0px 0px 19.1827px rgba(0, 0, 0, 0.1)
+}
+.user_detail{
+    width: 51.15px;
+    height: 53.71px;
+}
+.user_detail img{
+    border-radius: 50px;
+    object-fit: cover;
+    width: 100%;
+}
