@@ -7,7 +7,7 @@ import store from './redux/store';
 import { SnackbarProvider } from "notistack";
 
 import Main from "./pages/Main";
-import Auth from "./views/Auth";
+import Auth from "./pages/Auth";
 
 function App() {
   //const [initialState] = useState({});

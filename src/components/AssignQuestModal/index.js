@@ -129,6 +129,7 @@ function AssignQuestModal(props) {
               inputProps={{
                 name: "quest",
                 id: "quest",
+                detailPanelType: "multiple"
               }}
               required
             >

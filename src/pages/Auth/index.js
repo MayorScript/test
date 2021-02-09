@@ -9,6 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
+const {REACT_APP_API_URL} = process.env;
+
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -51,7 +53,7 @@ export default function Auth() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch(`${REACT_APP_API_URL}/login`, {
+    fetch(`${REACT_APP_API_URL}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -76,8 +78,8 @@ export default function Auth() {
       .catch(err => {
         console.error("Login error:", err);
       });
-    // localStorage.setItem("MS_loggedIn", "TRUE");
-    // history.replace(from);
+    localStorage.setItem("MS_loggedIn", "TRUE");
+    history.replace(from);
   };
 
   return loggedIn ? (
@@ -95,7 +97,7 @@ export default function Auth() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign in now
         </Typography>
         <form className={classes.form} noValidate>
           <TextField

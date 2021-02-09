@@ -3,6 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import QuestsTable from "./pages/QuestsTable";
 import Quest from "./pages/Quest";
 import Users from "./views/Users";
+import Test from "./pages/Test";
 import Matrix from "./pages/Matrix";
 import QuestCard from "./components/Cards/Quest";
 export const PrivateRoute = ({ children, ...rest }) => {
@@ -37,6 +38,11 @@ export const routes = [
     path: "/users",
     title: () => "Users",
     main: () => <Users />,
+  },
+  {
+    path: "/test",
+    title: () => "Test",
+    main: () => <Test />,
   },
   {
     path: "/quests",

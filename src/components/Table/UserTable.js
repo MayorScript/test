@@ -14,19 +14,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
-// import IconButton from '@material-ui/core/IconButton';
-// import Tooltip from '@material-ui/core/Tooltip';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Switch from '@material-ui/core/Switch';
-import PublishOutlinedIcon from '@material-ui/icons/PublishOutlined';
-import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
-import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
 
-
+import { useHistory } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 export default function UserTable(props) {
   const useStyles = makeStyles((theme) => ({
@@ -67,6 +57,11 @@ export default function UserTable(props) {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [optionShow, setOptionShow] = useState(false);
   const [menuShow, setMenuShow] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+  const [refetch, setRefetch] = useState(true);
+  const [data, setData] = useState([]);
+  const [usersList, setUsersList] = useState([]);
+  const history = useHistory();
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -104,8 +99,28 @@ export default function UserTable(props) {
     }
 
     setSelected(newSelected);
+    props.setShowModal(true);
+    props.setModalPage("user__details");
+    props.setModalId("1")
+     
+      
   };
-
+  const handleUserModal = () => {
+    props.setShowModal(true);
+    props.setModalPage("user__details");
+    props.setModalId("1") 
+    //props.setModalId(row.id)
+  }
+  const handleUserQuest = () => {
+    props.setShowModal(true);
+    props.setModalPage("assignQuest");
+    props.setModalId("2") 
+  }
+  const handleUserDelete = () => {
+    // props.setShowModal(true);
+    // props.setModalPage("userDelete");
+    // props.setModalId("3") 
+  }
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -164,6 +179,36 @@ export default function UserTable(props) {
     { id: 'category', numeric: false, disablePadding: false, label: 'Category' },
   ];
   
+  useEffect(() => {
+    if (refetch) {
+      fetch(`${process.env.REACT_APP_API_URL}/admin/users`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          if (res.status === 401) {
+            enqueueSnackbar(
+              "Your session expired or you don't have admin rights",
+              { variant: "error" }
+            );
+            localStorage.removeItem("MS_loggedIn");
+            history.push("/");
+          }
+          return res.json();
+        })
+        .then((res) => {
+          setData(res);
+          setRefetch(false);
+        })
+        .catch((err) => {
+          console.error("Error in fetch:", err);
+        });
+    }
+  }, [refetch]);
+
   function EnhancedTableHead(props) {
     const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
     const createSortHandler = (property) => (event) => {
@@ -261,8 +306,12 @@ export default function UserTable(props) {
 
           </Typography>
 
-          <button type="button" className="btn delete__user"><i class="far fa-trash-alt pr-2"></i>Delete</button>
-           <button type="button" className="btn send__quest"><i class="far fa-save pr-2" aria-hidden="true"></i>Send</button>
+          <button type="button" className="btn btn-cool"><i class="far fa-trash-alt pr-2"
+           onClick={handleUserDelete()}
+          ></i>Delete</button>
+           <button type="button" className="btn btn-dang"
+           onClick={(event) => handleUserQuest(event)}
+           ><i class="far fa-paper-plane  pr-2" aria-hidden="true"></i>Send</button>
 
            <div class="form-group has-search">
             <span class="fa fa-search form-control-feedback"></span>
@@ -311,31 +360,28 @@ export default function UserTable(props) {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={data.length}
             />
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
+              {stableSort(data, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.email);
+                .map((user, index) => {
+                  const isItemSelected = isSelected(user.email);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.email)}
+                      onClick={(event) => handleClick(event, user.email)}
+                      
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.email}
+                      key={user.email}
                       selected={isItemSelected}
-                      onMouseEnter={() => setOptionShow(true)}
-                      onMouseLeave={() => setOptionShow(false)}
-                      onClick={()=>{
-                        props.setShowModal(true);
-                        props.setModalPage("user__details");
-                        props.setModalId("1")
-                      }}
+                       //onMouseEnter={() => handleUserModal()}
+                      // onMouseLeave={() => setOptionShow(false)}
+                  
                     >
                       <TableCell padding="checkbox">
                         <Checkbox
@@ -344,12 +390,12 @@ export default function UserTable(props) {
                         />
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.name}
+                        {user.first_name}
                       </TableCell>
-                      <TableCell >{row.surname}</TableCell>
-                      <TableCell >{row.email}</TableCell>
-                      <TableCell >{row.gender}</TableCell>
-                      {row.connectedToMh == true ? 
+                      <TableCell >{user.last_name}</TableCell>
+                      <TableCell >{user.email}</TableCell>
+                      <TableCell >{user.gender}</TableCell>
+                      {user.connected_to_mh == true ? 
 
                       <TableCell style={{color: 'green'}} > 
                        Yes 
@@ -362,16 +408,16 @@ export default function UserTable(props) {
                       </TableCell>
                       
                       }
-                      <TableCell >{row.currentScore}</TableCell>
-                      <TableCell >{row.questCompleted}</TableCell>
-                      <TableCell >{row.category}</TableCell>
-                      {optionShow && (
+                      <TableCell >{user.current_score}</TableCell>
+                      <TableCell >{user.quests_completed}</TableCell>
+                      <TableCell >{user.category}</TableCell>
+                      {/* {optionShow && (
 
                       <div className="option"  onClick={() => hanleOPtionMenuClick()}>
                         <span>...</span>
                       </div>
-                      )}
-                      {
+                      )} */}
+                      {/* {
                         menuShow && (
 
                       <div className="option__menu" onMouseLeave={setMenuShow(false)} >
@@ -381,7 +427,7 @@ export default function UserTable(props) {
                           <li>Activate</li>
                         </ul>
                       </div>
-                        )}
+                        )} */}
                     </TableRow>
                   );
                 })}

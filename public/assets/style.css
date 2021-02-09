@@ -71,7 +71,6 @@ table {
     top:0;
     left:0;
     background-color: rgba(0,0,0,0.34);
-    z-index:1111111111;
 }
 
 .modal-inner{
@@ -185,7 +184,17 @@ form {
     font-size: 15px !important;
 
 }
-.delete__user{
+.btn-main{
+    background: #3F51B5 !important;
+    border-radius: 3px !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 15px !important;
+    line-height: 18px !important;
+    color: #fff !important;
+    margin: 0 10px !important;
+}
+.btn-dang{
     background: #FFEBEB !important;
     border-radius: 3px !important;
     font-style: normal !important;
@@ -195,7 +204,7 @@ form {
     color: #FF0000 !important;
     margin: 0 10px !important;
 }
-.send__quest{
+.btn-cool{
     background: #ECEEF8 !important;
     border-radius: 3px !important;
     font-style: normal !important;
@@ -242,7 +251,7 @@ form {
 }
 .modal__close{
     position: absolute;
-    top: 30%;
+    top: 17%;
     right: 26%;
     background: #fff;
     border-radius: 50px;
@@ -250,10 +259,15 @@ form {
 }
 .user_detail{
     width: 51.15px;
-    height: 53.71px;
 }
 .user_detail img{
     border-radius: 50px;
     object-fit: cover;
     width: 100%;
+}
+.custom_select{
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 3px;
+    width: 400px;
 }

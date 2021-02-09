@@ -15,18 +15,20 @@ const Users = () => {
   const classes = useStyles();
   const [showModal, setShowModal] = useState(false);
   const [modalPage, setModalPage] = useState("");
-  const [modalId, setModalId] = useState("")
+  const [modalId, setModalId] = useState("");
+  const [usersList, setUsersList] = useState([]);
+  const [first_name, setFirstName] = useState("");
   return (
     <>
 {/*     
         <Search /> */}
         <UserTable
         page={modalPage} setModalPage={setModalPage} setShowModal={setShowModal} showModal={showModal}
-        setModalId={setModalId} modalId={modalId}
+        setModalId={setModalId} modalId={modalId} setFirstName={setFirstName} setUsersList={setUsersList}
         />
         {showModal &&
        <Modals page={modalPage} setModalPage={setModalPage} setShowModal={setShowModal} showModal={showModal} 
-       setModalId={setModalId} modalId={modalId}
+       setModalId={setModalId} modalId={modalId} usersList={usersList} first_name={first_name}
        />
       }
    

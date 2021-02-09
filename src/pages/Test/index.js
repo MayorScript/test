@@ -95,7 +95,10 @@ export default function Users(props) {
             tooltip: "Assign quest to the selected Users",
             icon: "share",
             onClick: (evt, data) => toggleModal(),
+            
           },
+          
+
         ]}
         onSelectionChange={(rows) => setSelectedUsers(rows)}
       />
@@ -105,6 +108,7 @@ export default function Users(props) {
         usersList={usersList}
         dropSelection={dropSelection}
       />
+     
     </div>
   );
 }
